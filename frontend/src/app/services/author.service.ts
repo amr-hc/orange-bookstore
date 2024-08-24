@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 // Author Interface
 export interface Author {
@@ -26,7 +27,7 @@ export interface Response {
   providedIn: 'root'
 })
 export class AuthorService {
-  private apiUrl = 'http://localhost:3000/authors';
+  private apiUrl = environment.apiBaseUrl+'/authors';
 
   constructor(private http: HttpClient) { }
 
