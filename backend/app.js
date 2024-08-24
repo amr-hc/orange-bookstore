@@ -13,11 +13,12 @@ app.use(cors({
 
 // Get all authors with pagination
 app.get('/authors', async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 100 } = req.query;
   const authors = await Author.findAndCountAll({
     limit: parseInt(limit),
     offset: (page - 1) * limit,
-    include: ['books']
+    include: ['books'],
+    distinct: true
   });
   res.json(authors);
 });
