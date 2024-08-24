@@ -1,0 +1,29 @@
+.card {
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    object-fit: cover;
+    height: 500px;
+  }
+  
+  .card-title {
+    font-weight: 700;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .book-img {
+    height: 400px;
+    object-fit: fill;
+  }
+  
+  .card h6 {
+    font-weight: 600;
+  }
+  

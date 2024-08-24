@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { CommonModule } from '@angular/common';
+import { Router , RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-show',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './show.component.html',
   styleUrl: './show.component.css'
 })

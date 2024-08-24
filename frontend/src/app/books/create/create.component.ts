@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../../services/book.service';
 import { AuthorService, Author } from '../../services/author.service';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';  // <-- Import this module
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authorService.getAuthors().subscribe(authors => {
+    this.authorService.getAuthors(1,100).subscribe(authors => {
       this.authors = authors.rows;
       console.log(authors.rows);
     });

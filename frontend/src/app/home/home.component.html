@@ -7,7 +7,13 @@
       <h5 class="card-title">{{ book.title }}</h5>
     </div>
     <ul class="list-group list-group-flush d-flex flex-row flex-wrap">
-      <li class="list-group-item w-100">Author : {{ book.author.name }}</li>
+      <li class="list-group-item w-100">
+        Author: 
+        <a [routerLink]="['/authors', book.author.id]" class="text-decoration-none">
+          {{ book.author.name }}
+        </a>
+      </li>
+
       <li class="list-group-item w-50">
         Pages: <span [ngClass]="{'text-danger': book.pages < 300, 'text-primary': book.pages >= 300}">
           {{ book.pages }}

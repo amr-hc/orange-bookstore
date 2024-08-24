@@ -1,0 +1,23 @@
+.card {
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }
+  
+  .form-control {
+    border-radius: 0.25rem;
+  }
+  
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+  }
+  

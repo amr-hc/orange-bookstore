@@ -41,7 +41,7 @@ export class UpdateComponent implements OnInit {
       this.bookForm.patchValue(book);
     });
 
-    this.authorService.getAuthors().subscribe(authors => {
+    this.authorService.getAuthors(1,100).subscribe(authors => {
       this.authors = authors.rows;
     });
   }

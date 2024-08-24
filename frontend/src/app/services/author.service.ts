@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
 
 // Author Interface
 export interface Author {
-  id?: number;
+  id: number;
   name: string;
   bio?: string;
   email?: string;
+  photo: string;
+  books?: any[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -28,48 +30,30 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Get all authors
-   * @returns Observable<Author[]>
-   */
-  getAuthors(): Observable<Response> {
-    return this.http.get<Response>(this.apiUrl);
+
+  getAuthors(page: number, limit: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}?page=${page}&limit=${limit}`);
   }
 
-  /**
-   * Get a single author by ID
-   * @param id - Author ID
-   * @returns Observable<Author>
-   */
+
+
   getAuthor(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.apiUrl}/${id}`);
   }
 
-  /**
-   * Add a new author
-   * @param author - Author data
-   * @returns Observable<Author>
-   */
+
   addAuthor(author: Author): Observable<Author> {
     return this.http.post<Author>(this.apiUrl, author);
   }
 
-  /**
-   * Update an existing author
-   * @param id - Author ID
-   * @param author - Updated author data
-   * @returns Observable<Author>
-   */
+
   updateAuthor(id: number, author: Author): Observable<Author> {
     return this.http.put<Author>(`${this.apiUrl}/${id}`, author);
   }
 
-  /**
-   * Delete an author
-   * @param id - Author ID
-   * @returns Observable<void>
-   */
   deleteAuthor(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+
 }
