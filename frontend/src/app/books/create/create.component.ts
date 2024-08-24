@@ -26,8 +26,8 @@ export class CreateComponent implements OnInit {
     private router: Router
   ) {
     this.bookForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.maxLength(1000)]],
       author_id: ['', Validators.required],
       pages: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]]
@@ -56,7 +56,6 @@ export class CreateComponent implements OnInit {
       formData.append('pages', this.bookForm.get('pages')!.value);
       formData.append('price', this.bookForm.get('price')!.value);
 
-      // Only append the photo if one is selected
       if (this.selectedFile) {
         formData.append('photo', this.selectedFile);
       }

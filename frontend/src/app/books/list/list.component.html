@@ -22,7 +22,11 @@
           <tbody>
             <tr *ngFor="let book of books">
               <td>{{ book.title }}</td>
-              <td>{{ book.author.name }}</td>
+              <td>
+                <a [routerLink]="['/authors', book.author.id]" class="text-decoration-none">
+                  {{ book.author.name }}
+                </a>
+              </td>              
               <td>{{ book.pages }}</td>
               <td>{{ book.price | currency }}</td>
               <td class="text-center">

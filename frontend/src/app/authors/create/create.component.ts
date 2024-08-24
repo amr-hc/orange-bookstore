@@ -22,8 +22,8 @@ export class CreateComponent implements OnInit {
     private router: Router
   ) {
     this.authorForm = this.fb.group({
-      name: ['', Validators.required],
-      bio: ['']
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      bio: ['', [Validators.maxLength(500)]]
     });
   }
 

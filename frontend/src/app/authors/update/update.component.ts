@@ -25,7 +25,7 @@ export class UpdateComponent implements OnInit {
     private router: Router
   ) {
     this.authorForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       bio: ['']
     });
   }

@@ -7,28 +7,28 @@
         </div>
         <div class="card-body">
           <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
-            <!-- Name -->
             <div class="form-group mb-3">
               <label for="name">Author Name</label>
               <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter author's name" required>
               <div *ngIf="authorForm.get('name')?.invalid && authorForm.get('name')?.touched" class="text-danger">
-                Name is required.
+                <div *ngIf="authorForm.get('name')?.errors?.['required']">Name is required.</div>
+                <div *ngIf="authorForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
               </div>
             </div>
 
-            <!-- Bio -->
             <div class="form-group mb-3">
               <label for="bio">Bio</label>
               <textarea id="bio" class="form-control" formControlName="bio" placeholder="Enter bio" rows="4"></textarea>
+              <div *ngIf="authorForm.get('bio')?.invalid && authorForm.get('bio')?.touched" class="text-danger">
+                <div *ngIf="authorForm.get('bio')?.errors?.['maxlength']">Bio must be less than 500 characters.</div>
+              </div>
             </div>
 
-            <!-- Photo -->
             <div class="form-group mb-3">
               <label for="photo">Photo</label>
-              <input type="file" id="photo" class="form-control" (change)="onFileChange($event)">
+              <input type="file" id="photo" class="form-control" accept="image/png, image/jpeg, image/jpg" (change)="onFileChange($event)">
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-success btn-block" [disabled]="authorForm.invalid">
               <i class="fas fa-save"></i> Create Author
             </button>

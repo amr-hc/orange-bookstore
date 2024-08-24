@@ -8,22 +8,23 @@
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" [formGroup]="bookForm">
 
-            <!-- Book Title -->
             <div class="form-group mb-3">
-              <label for="title">Book Title</label>
+              <label for="title">Title</label>
               <input type="text" id="title" class="form-control" formControlName="title" placeholder="Enter book title" required>
               <div *ngIf="bookForm.get('title')!.invalid && bookForm.get('title')!.touched" class="text-danger">
-                Title is required.
+                <div *ngIf="bookForm.get('title')?.errors?.['required']">Title is required.</div>
+                <div *ngIf="bookForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters long.</div>
               </div>
             </div>
 
-            <!-- Book Description -->
             <div class="form-group mb-3">
               <label for="description">Description</label>
               <textarea id="description" class="form-control" formControlName="description" placeholder="Enter book description" rows="4"></textarea>
+              <div *ngIf="bookForm.get('description')!.invalid && bookForm.get('description')!.touched" class="text-danger">
+                <div *ngIf="bookForm.get('description')?.errors?.['maxlength']">Description must be less than 1000 characters.</div>
+              </div>
             </div>
 
-            <!-- Author -->
             <div class="form-group mb-3">
               <label for="author">Author</label>
               <select id="author" class="form-control" formControlName="author_id" required>
@@ -35,25 +36,27 @@
               </div>
             </div>
 
-            <!-- Pages -->
             <div class="form-group mb-3">
               <label for="pages">Pages</label>
               <input type="number" id="pages" class="form-control" formControlName="pages" placeholder="Enter number of pages" required>
+              <div *ngIf="bookForm.get('pages')!.invalid && bookForm.get('pages')!.touched" class="text-danger">
+                <div *ngIf="bookForm.get('pages')?.errors?.['min']">Pages must be a positive integer.</div>
+              </div>
             </div>
 
-            <!-- Price -->
             <div class="form-group mb-3">
               <label for="price">Price ($)</label>
               <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter price" required>
+              <div *ngIf="bookForm.get('price')!.invalid && bookForm.get('price')!.touched" class="text-danger">
+                <div *ngIf="bookForm.get('price')?.errors?.['min']">Price must be a positive number.</div>
+              </div>
             </div>
 
-            <!-- Photo -->
             <div class="form-group mb-3">
               <label for="photo">Book Cover Photo</label>
-              <input type="file" id="photo" class="form-control" (change)="onFileChange($event)">
+              <input type="file" id="photo" class="form-control" accept="image/png, image/jpeg, image/jpg" (change)="onFileChange($event)">
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-success btn-block" [disabled]="bookForm.invalid">
               <i class="fas fa-save"></i> Create Book
             </button>

@@ -28,8 +28,8 @@ export class UpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.bookForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', Validators.maxLength(1000)],
       author_id: ['', Validators.required],
       pages: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]]
@@ -68,7 +68,6 @@ export class UpdateComponent implements OnInit {
       }
 
       this.bookService.updateBook(this.bookId, formData).subscribe(() => {
-        console.log('Book updated successfully');
         this.router.navigate(['/books']);
       });
     }

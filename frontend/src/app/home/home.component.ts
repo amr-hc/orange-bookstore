@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../services/book.service'; // Adjust the path as necessary
+import { BookService } from '../services/book.service'; 
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -22,17 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   formatMoney(amount: number): string {
-    return `$${amount.toFixed(2)}`; // Adjust for your currency format
-  }
-
-  addToCard(book: any): void {
-    // Logic to add the book to the user's list
-  }
-
-  haveBook(book: any): number {
-    // Logic to check if the book is already in the user's list
-    // Return -1 if not present, otherwise return index or another identifier
-    return -1; // Example logic
+    return `$${amount.toFixed(2)}`;
   }
 
 }
