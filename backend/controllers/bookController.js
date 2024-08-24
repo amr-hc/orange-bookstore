@@ -1,5 +1,8 @@
-const { Book } = require('../models');
+const path = require('path');
+const fs = require('fs');
 const uploadController = require('./uploadController');
+const { Book } = require('../models');
+
 
 exports.getAllBooks = async (req, res) => {
   const books = await Book.findAll({ include: ['author'] });
@@ -17,8 +20,11 @@ exports.getBookById = async (req, res) => {
 
 exports.createBook = async (req, res, next) => {
     try {
-
-    await uploadController.saveImage("books", req, res);
+    if (req.file){
+      await uploadController.saveImage("books", req, res);
+    }else{
+      req.body.photo="default.jpg";
+    }
     const newBook = await Book.create(req.body);
     res.status(201).json(newBook);
 
@@ -31,12 +37,33 @@ exports.createBook = async (req, res, next) => {
 
 exports.updateBook = async (req, res) => {
   const book = await Book.findByPk(req.params.id);
+
   if (book) {
+
+    if (req.file){
+
+      await uploadController.saveImage("books", req, res);
+
+      if(book.photo != "default.jpg"){
+
+        const oldPhotoPath = path.join(__dirname, '..', 'images', 'books', book.photo);
+        
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath);
+        }
+
+      }
+
+    }
+
     await book.update(req.body);
     res.json(book);
+
   } else {
     res.status(404).send('Book not found');
   }
+
+
 };
 
 exports.deleteBook = async (req, res) => {

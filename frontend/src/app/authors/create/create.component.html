@@ -1,41 +1,40 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
-        <div class="card shadow-lg">
-          <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Create New Author</h3>
-          </div>
-          <div class="card-body">
-            <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
-              <!-- Name -->
-              <div class="form-group mb-3">
-                <label for="name">Author Name</label>
-                <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter author's name" required>
-                <div *ngIf="authorForm.get('name')?.invalid && authorForm.get('name')?.touched" class="text-danger">
-                  Name is required.
-                </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Create New Author</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+            <!-- Name -->
+            <div class="form-group mb-3">
+              <label for="name">Author Name</label>
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter author's name" required>
+              <div *ngIf="authorForm.get('name')?.invalid && authorForm.get('name')?.touched" class="text-danger">
+                Name is required.
               </div>
-  
-              <!-- Bio -->
-              <div class="form-group mb-3">
-                <label for="bio">Bio</label>
-                <textarea id="bio" class="form-control" formControlName="bio" placeholder="Enter bio" rows="4"></textarea>
-              </div>
-  
-              <!-- Photo URL -->
-              <div class="form-group mb-3">
-                <label for="photo">Photo URL</label>
-                <input type="text" id="photo" class="form-control" formControlName="photo" placeholder="Enter photo URL">
-              </div>
-  
-              <!-- Submit Button -->
-              <button type="submit" class="btn btn-success btn-block" [disabled]="authorForm.invalid">
-                <i class="fas fa-save"></i> Create Author
-              </button>
-            </form>
-          </div>
+            </div>
+
+            <!-- Bio -->
+            <div class="form-group mb-3">
+              <label for="bio">Bio</label>
+              <textarea id="bio" class="form-control" formControlName="bio" placeholder="Enter bio" rows="4"></textarea>
+            </div>
+
+            <!-- Photo -->
+            <div class="form-group mb-3">
+              <label for="photo">Photo</label>
+              <input type="file" id="photo" class="form-control" (change)="onFileChange($event)">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success btn-block" [disabled]="authorForm.invalid">
+              <i class="fas fa-save"></i> Create Author
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
   authorForm: FormGroup;
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -22,16 +23,30 @@ export class CreateComponent implements OnInit {
   ) {
     this.authorForm = this.fb.group({
       name: ['', Validators.required],
-      bio: [''],
-      photo: ['']
+      bio: ['']
     });
   }
 
   ngOnInit(): void {}
 
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
   onSubmit(): void {
     if (this.authorForm.valid) {
-      this.authorService.addAuthor(this.authorForm.value).subscribe(() => {
+      const formData = new FormData();
+      formData.append('name', this.authorForm.get('name')!.value);
+      formData.append('bio', this.authorForm.get('bio')!.value);
+
+      if (this.selectedFile) {
+        formData.append('photo', this.selectedFile);
+      }
+
+      this.authorService.addAuthor(formData).subscribe(() => {
         console.log('Author created successfully');
         this.router.navigate(['/authors']);
       });

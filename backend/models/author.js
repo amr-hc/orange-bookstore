@@ -3,7 +3,17 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+
+  
   class Author extends Model {
+
+
+    toJSON() {
+      const attributes = { ...this.get() };
+      attributes.photo = `${process.env.BASE_URL || 'http://localhost:3000'}/images/authors/${attributes.photo}`;
+      return attributes;
+    }
+
     static associate(models) {
 
       Author.hasMany(models.Book, {
@@ -16,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
 
   Author.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
     photo: DataTypes.STRING,
     bio: DataTypes.TEXT
   }, {

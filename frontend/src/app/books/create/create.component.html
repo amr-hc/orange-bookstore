@@ -47,10 +47,10 @@
               <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter price" required>
             </div>
 
-            <!-- Photo URL -->
+            <!-- Photo -->
             <div class="form-group mb-3">
-              <label for="photo">Book Cover URL</label>
-              <input type="text" id="photo" class="form-control" formControlName="photo" placeholder="Enter image URL">
+              <label for="photo">Book Cover Photo</label>
+              <input type="file" id="photo" class="form-control" (change)="onFileChange($event)">
             </div>
 
             <!-- Submit Button -->

@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+const uploadController = require('./uploadController');
 const { Author } = require('../models');
 
 exports.getAllAuthors = async (req, res) => {
@@ -23,18 +26,51 @@ exports.getAuthorById = async (req, res) => {
 };
 
 exports.createAuthor = async (req, res) => {
-  const newAuthor = await Author.create(req.body);
-  res.status(201).json(newAuthor);
+  try {
+    if (req.file){
+      await uploadController.saveImage("authors", req, res);
+    }else{
+      req.body.photo="default.jpg";
+    }
+    const newAuthor = await Author.create(req.body);
+    res.status(201).json(newAuthor);
+
+    } catch (error) {
+      next(error);
+    }
+
+
 };
 
 exports.updateAuthor = async (req, res) => {
+
   const author = await Author.findByPk(req.params.id);
+
   if (author) {
+
+    if (req.file){
+
+      await uploadController.saveImage("authors", req, res);
+
+      if(author.photo != "default.jpg"){
+
+        const oldPhotoPath = path.join(__dirname, '..', 'images', 'authors', author.photo);
+        
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath);
+        }
+
+      }
+
+    }
+
     await author.update(req.body);
     res.json(author);
+
   } else {
     res.status(404).send('Author not found');
   }
+
 };
 
 exports.deleteAuthor = async (req, res) => {

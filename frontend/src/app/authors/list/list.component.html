@@ -12,7 +12,6 @@
           <thead class="bg-primary text-white">
             <tr>
               <th>Name</th>
-              <th>Email</th>
               <th class="d-none d-md-table-cell">Bio</th>
               <th class="text-center">Actions</th>
             </tr>
@@ -20,7 +19,6 @@
           <tbody>
             <tr *ngFor="let author of authors">
               <td>{{ author.name }}</td>
-              <td>{{ author.email }}</td>
               <td class="d-none d-md-table-cell">{{ author.bio }}</td>
               <td class="text-center">
                 <div class="d-flex justify-content-center align-items-center">

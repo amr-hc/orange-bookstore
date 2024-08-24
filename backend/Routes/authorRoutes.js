@@ -1,11 +1,12 @@
 const express = require('express');
 const authorController = require('../controllers/authorController');
+const {uploadPhoto} = require('./../controllers/uploadController');
 
 const router = express.Router();
 
-router.route('/').get(authorController.getAllAuthors).post(authorController.createAuthor);
+router.route('/').get(authorController.getAllAuthors).post(uploadPhoto,authorController.createAuthor);
 
-router.route('/:id').get(authorController.getAuthorById).put(authorController.updateAuthor).delete(authorController.deleteAuthor)
+router.route('/:id').get(authorController.getAuthorById).put(uploadPhoto,authorController.updateAuthor).delete(authorController.deleteAuthor)
 
 
 

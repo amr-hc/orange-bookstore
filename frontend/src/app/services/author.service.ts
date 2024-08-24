@@ -4,23 +4,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Author } from '../../app/models/author';
 
 // Author Interface
-export interface Author {
-  id: number;
-  name: string;
-  bio?: string;
-  email?: string;
-  photo: string;
-  books?: any[];
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+
 
 export interface Response {
   count: number;
   rows: Author[];
-
 }
 
 @Injectable({
@@ -43,12 +34,12 @@ export class AuthorService {
   }
 
 
-  addAuthor(author: Author): Observable<Author> {
-    return this.http.post<Author>(this.apiUrl, author);
+  addAuthor(author: any): Observable<any> {
+    return this.http.post(this.apiUrl, author);
   }
 
 
-  updateAuthor(id: number, author: Author): Observable<Author> {
+  updateAuthor(id: number, author: any): Observable<Author> {
     return this.http.put<Author>(`${this.apiUrl}/${id}`, author);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorService, Author } from '../../services/author.service';
+import { AuthorService } from '../../services/author.service';
+import { Author } from '../../models/author';
 import { CommonModule } from '@angular/common';
 import { Router , RouterModule, ActivatedRoute} from '@angular/router';
 

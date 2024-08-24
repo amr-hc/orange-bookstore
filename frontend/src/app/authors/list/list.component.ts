@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorService, Author } from '../../services/author.service';
+import { AuthorService } from '../../services/author.service';
+import { Author } from '../../models/author';
 import { CommonModule } from '@angular/common';
 import { Router , RouterModule} from '@angular/router';
 
@@ -44,7 +45,7 @@ export class ListComponent {
   deleteAuthor(id: number): void {
     if (confirm('Are you sure you want to delete this author?')) {
       this.authorService.deleteAuthor(id).subscribe(() => {
-        this.loadAuthors(); // Refresh the list after deletion
+        this.loadAuthors();
       });
     }
   }
