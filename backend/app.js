@@ -13,11 +13,11 @@ const authorRoutes = require('./Routes/authorRoutes');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: process.env.FRONT_URL
 }));
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server is running');
 });
 
 
