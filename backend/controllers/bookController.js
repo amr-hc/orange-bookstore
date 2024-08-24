@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const uploadController = require('./uploadController');
 const { Book } = require('../models');
+const { Op } = require('sequelize');
 
 
 exports.getAllBooks = async (req, res) => {
@@ -75,3 +76,23 @@ exports.deleteBook = async (req, res) => {
     res.status(404).send('Book not found');
   }
 };
+
+
+exports.searchBookByTitle = async (req, res) => {
+  try {
+      const title = req.params.title;
+      const books = await Book.findAll({
+        where: {
+          title: {
+            [Op.like]: `%${title}%`
+          }
+        },
+        include: ['author']
+      });
+    
+
+      res.status(200).json(books);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+}

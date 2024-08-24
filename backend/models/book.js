@@ -3,11 +3,6 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
 
     toJSON() {
       const attributes = { ...this.get() };
@@ -15,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       return attributes;
     }
     static associate(models) {
-      // Define association here
+
       Book.belongsTo(models.Author, {
         foreignKey: 'author_id',
         as: 'author',
@@ -42,13 +37,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     photo: {
       type: DataTypes.STRING,
-      allowNull: true, 
+      allowNull: true,
     },
     price: {
       type: DataTypes.FLOAT,
       allowNull: false,
     }
   }, {
+    timestamps: false,
     sequelize,
     modelName: 'Book',
   });

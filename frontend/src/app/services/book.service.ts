@@ -20,6 +20,10 @@ export class BookService {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
+  searchBooks(title: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search/${title}`);
+  }
+
   addBook(book: any): Observable<any> {
     return this.http.post(this.apiUrl, book);
   }
@@ -31,4 +35,6 @@ export class BookService {
   deleteBook(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  
 }

@@ -17,8 +17,6 @@ module.exports = {
         photo: 'default1.jpg',
         pages: Math.floor(Math.random() * 100),
         price : (Math.random() * 1000).toFixed(2),
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         title: 'A Game of Thrones',
@@ -27,8 +25,6 @@ module.exports = {
         photo: 'default2.webp',
         pages: Math.floor(Math.random() * 100),
         price : (Math.random() * 1000).toFixed(2),
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         title: 'The Fellowship of the Ring',
@@ -37,20 +33,14 @@ module.exports = {
         photo: 'default3.jpg',
         pages: Math.floor(Math.random() * 100),
         price : (Math.random() * 1000).toFixed(2),
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]);
-
-
-
 
   },
 
   async down (queryInterface, Sequelize) {
 
     await queryInterface.bulkDelete('Books', null, {});
-
 
   }
 };

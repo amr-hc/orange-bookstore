@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING,
     bio: DataTypes.TEXT
   }, {
+    timestamps: false,
     sequelize,
     modelName: 'Author',
   });

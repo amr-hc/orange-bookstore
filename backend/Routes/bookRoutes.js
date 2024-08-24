@@ -12,5 +12,7 @@ router.route('/').get(bookController.getAllBooks).post(uploadPhoto,bookValidatio
 
 router.route('/:id').get(bookController.getBookById).put(uploadPhoto,bookValidation.update,validatorResult,bookController.updateBook).delete(bookController.deleteBook)
 
+router.get('/search/:title', bookController.searchBookByTitle);
+
 
 module.exports = router;
