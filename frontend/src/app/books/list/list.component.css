@@ -1,0 +1,42 @@
+.table {
+    border-radius: 0.25rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .table th {
+    font-weight: 600;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .table thead th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-sm {
+    margin-right: 5px;
+  }
+  
+  .btn-success {
+    margin-bottom: 1rem;
+  }
+  
+  .btn i {
+    margin-right: 5px;
+  }
+  
+  .table-responsive {
+    margin-top: 20px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background: white;
+  }
+  

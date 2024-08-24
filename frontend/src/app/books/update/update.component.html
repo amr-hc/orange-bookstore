@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Update Book</h3>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()" [formGroup]="bookForm">
+  
+              <!-- Book Title -->
+              <div class="form-group mb-3">
+                <label for="title">Book Title</label>
+                <input type="text" id="title" class="form-control" formControlName="title" placeholder="Enter book title" required>
+                <div *ngIf="bookForm.get('title')!.invalid && bookForm.get('title')!.touched" class="text-danger">
+                  Title is required.
+                </div>
+              </div>
+  
+              <!-- Book Description -->
+              <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" formControlName="description" placeholder="Enter book description" rows="4"></textarea>
+              </div>
+  
+              <!-- Author -->
+              <div class="form-group mb-3">
+                <label for="author">Author</label>
+                <select id="author" class="form-control" formControlName="author_id" required>
+                  <option value="" disabled selected>Select an author</option>
+                  <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
+                </select>
+                <div *ngIf="bookForm.get('author_id')!.invalid && bookForm.get('author_id')!.touched" class="text-danger">
+                  Author is required.
+                </div>
+              </div>
+  
+              <!-- Pages -->
+              <div class="form-group mb-3">
+                <label for="pages">Pages</label>
+                <input type="number" id="pages" class="form-control" formControlName="pages" placeholder="Enter number of pages" required>
+              </div>
+  
+              <!-- Price -->
+              <div class="form-group mb-3">
+                <label for="price">Price ($)</label>
+                <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter price" required>
+              </div>
+  
+              <!-- Photo URL -->
+              <div class="form-group mb-3">
+                <label for="photo">Book Cover URL</label>
+                <input type="text" id="photo" class="form-control" formControlName="photo" placeholder="Enter image URL">
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-success btn-block" [disabled]="bookForm.invalid">
+                <i class="fas fa-save"></i> Update Book
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
